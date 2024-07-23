@@ -53,3 +53,33 @@ order(2000, () => console.log(`${stock.Fruits[0]}`))
   .finally(() => {
     console.log("Day ended. SHop is closed.");
   });
+
+
+// now implementing the async await
+function time(ms) {
+  return new Promise((resolve, reject) => {
+    if (is_shop_open) {
+      setTimeout(resolve, ms);
+    } else {
+      reject(console.log("shop is closed"));
+    }
+  });
+}
+async function kitchen() {
+  try {
+    await time(2000);
+    console.log(`${stock.Fruits[0]}`);
+
+    await time(0000);
+    console.log("start production");
+
+    await time(1000);
+    console.log("cut the fruit");
+  } catch (error) {
+    console.log("customer left", error);
+  } finally {
+    console.log("day ended, shop is closed. ");
+  }
+}
+
+kitchen();
