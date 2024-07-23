@@ -20,8 +20,7 @@ let order = (time, work) => {
 };
 
 order(2000, () => console.log(`${stock.Fruits[0]}`))
-// promise chaining using .then() do not apply commas after then()
-// there are two arrow fuctions since order() accepts time and work()
+  // promise chaining
   .then(() => {
     return order(0000, () => console.log("Production has started."));
   })
@@ -46,4 +45,11 @@ order(2000, () => console.log(`${stock.Fruits[0]}`))
     return order(2000, () =>
       console.log(`${stock.toppings[0]} placed on icecream. `)
     );
+  })
+  .catch(() => {
+    console.log("customer left");
+  })
+  // finally() block will run regardless the code is resolved or rejected
+  .finally(() => {
+    console.log("Day ended. SHop is closed.");
   });
